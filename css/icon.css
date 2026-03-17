@@ -59,3 +59,7 @@
 .icon-mouse:before {
 	content: "\e60b";
 }
+.connect-icon:hover{
+	transform: scale(1.5);
+}
+

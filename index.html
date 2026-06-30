@@ -1,423 +1,156 @@
-<!--
-██╗  ██╗███████╗██╗     ██╗      ██████╗     ██╗    ██╗ ██████╗ ██████╗ ██╗     ██████╗
-██║  ██║██╔════╝██║     ██║     ██╔═══██╗    ██║    ██║██╔═══██╗██╔══██╗██║     ██╔══██╗
-███████║█████╗  ██║     ██║     ██║   ██║    ██║ █╗ ██║██║   ██║██████╔╝██║     ██║  ██║
-██╔══██║██╔══╝  ██║     ██║     ██║   ██║    ██║███╗██║██║   ██║██╔══██╗██║     ██║  ██║
-██║  ██║███████╗███████╗███████╗╚██████╔╝    ╚███╔███╔╝╚██████╔╝██║  ██║███████╗██████╔╝
-╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-Greetings !
 
-if (employer) {
-  yes, I'm always looking for great opportunities;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              vscode: {
+                bg: 'var(--vscode-bg)',
+                sidebar: 'var(--vscode-sidebar)',
+                activity: 'var(--vscode-activity)',
+                tabActive: 'var(--vscode-tabActive)',
+                tabInactive: 'var(--vscode-tabInactive)',
+                panel: 'var(--vscode-panel)',
+                statusBar: 'var(--vscode-statusBar)',
+                text: 'var(--vscode-text)',
+                accent: 'var(--vscode-accent)',
+                selection: 'var(--vscode-selection)',
+                lineHighlight: 'var(--vscode-lineHighlight)',
+                keyword: 'var(--vscode-keyword)',
+                string: 'var(--vscode-string)',
+                function: 'var(--vscode-function)',
+                comment: 'var(--vscode-comment)',
+                number: 'var(--vscode-number)',
+                type: 'var(--vscode-type)',
+                variable: 'var(--vscode-variable)',
+                // Icon colors
+                iconActive: 'var(--vscode-icon-active)',
+                iconInactive: 'var(--vscode-icon-inactive)',
+                // New additions
+                button: 'var(--vscode-button-bg)',
+                buttonFg: 'var(--vscode-button-fg)',
+                bracket: 'var(--vscode-bracket)',
+              },
+            },
+            fontFamily: {
+              mono: ['Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', 'monospace'],
+              sans: ['Segoe UI', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        /* Dark Theme (Default) */
+        --vscode-bg: #1e1e1e;
+        --vscode-sidebar: #252526;
+        --vscode-activity: #333333;
+        --vscode-tabActive: #1e1e1e;
+        --vscode-tabInactive: #2d2d2d;
+        --vscode-panel: #1e1e1e;
+        --vscode-statusBar: #007acc;
+        --vscode-text: #d4d4d4;
+        --vscode-accent: #007acc;
+        --vscode-selection: #264f78;
+        --vscode-lineHighlight: #2f3139;
+        
+        /* Syntax Highlighting - Dark */
+        --vscode-keyword: #569cd6;
+        --vscode-string: #ce9178;
+        --vscode-function: #dcdcaa;
+        --vscode-comment: #6a9955;
+        --vscode-number: #b5cea8;
+        --vscode-type: #4ec9b0;
+        --vscode-variable: #9cdcfe;
+
+        /* Icons - Dark */
+        --vscode-icon-active: #ffffff;
+        --vscode-icon-inactive: #6b7280;
+
+        /* Buttons - Dark */
+        --vscode-button-bg: #007acc;
+        --vscode-button-fg: #ffffff;
+
+        /* Syntax - Extra - Dark */
+        --vscode-bracket: #facc15; /* yellow-400 */
+      }
+
+      .light-theme {
+        /* Light Theme */
+        --vscode-bg: #ffffff;
+        --vscode-sidebar: #f3f3f3;
+        --vscode-activity: #e8e8e8;
+        --vscode-tabActive: #ffffff;
+        --vscode-tabInactive: #ececec;
+        --vscode-panel: #ffffff;
+        --vscode-statusBar: #007acc;
+        --vscode-text: #333333;
+        --vscode-accent: #005fb8;
+        --vscode-selection: #add6ff;
+        --vscode-lineHighlight: #eff6fc;
+
+        /* Syntax Highlighting - Light */
+        --vscode-keyword: #0000ff;
+        --vscode-string: #a31515;
+        --vscode-function: #795e26;
+        --vscode-comment: #008000;
+        --vscode-number: #098658;
+        --vscode-type: #267f99;
+        --vscode-variable: #001080;
+
+        /* Icons - Light */
+        --vscode-icon-active: #424242;
+        --vscode-icon-inactive: #888888;
+
+        /* Buttons - Light */
+        --vscode-button-bg: #005fb8;
+        --vscode-button-fg: #ffffff;
+
+        /* Syntax - Extra - Light */
+        --vscode-bracket: #0431fa; /* dark blue/black for brackets */
+      }
+
+      body {
+        background-color: var(--vscode-bg);
+        color: var(--vscode-text);
+        overflow: hidden;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--vscode-bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #424242;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4f4f4f;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
 }
-else if (want a website) {
-  ping me ! lets discuss how will I help you;
-}
-else if (geek) {
-  hi, I love to be friends with like minded people.
-  Message me, maybe we could help each other.
-}
-else {
-  goto: akshaysaini.in/404
-}
-________________________________________________________________________________________
-
-When I wrote this code, only God and I understood what I was doing
-Now, God only knows
-
-If you don't like anything on this website, bite me !
-________________________________________________________________________________________
-
-No copyright issues.
-Feel free to copy anything and everything from this website.
-If you need any help, ping me !
-________________________________________________________________________________________
-
-Cheers,
-Akshay Saini
-mailto: akshaysaini.in@gmail.com
-________________________________________________________________________________________
-
-I sincerely admit ! Not everything thing you saw on the website was developed by me from
-scratch, most of it is my original creation otherwise some of the elements are inspired
-or reproduced from the open source public code.
-
-SSSssshhhhh!! The code starts below -->
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="google-site-verification" content="CCdRdGi4mcQEMv_Q4-K8uQwAU59lbJEycK-zBCBX4q0" />
-  <meta name="description"
-    content="Hello World, I'm a Web developer, YouTuber, and a Digital Marketer. If you want your own website or grow your business online then coffee with me.">
-  <meta name="keywords"
-    content="web development, web designing, youtube, javascript, tutorials, react, angular, website, seo, digital marketing, social media marketing, freelancer, bengaluru, india ">
-  <meta name="author" content="Akshay Saini">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta property="og:title" content="Akshay Saini " />
-  <meta property="og:url" content="index.html" />
-  <meta property="og:image" content="img/logo.png" />
-  <meta property="og:site_name" content="Akshay Saini" />
-  <meta property="og:description"
-    content="Hello World, I'm a Web developer, YouTuber, and a Digital Marketer. If you want your own website or grow your business online then coffee with me." />
-  <title>Akshay Saini</title>
-  <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
-  <link rel="stylesheet" href="css/foundation.css" />
-  <script src="js/vendor/modernizr.js"></script>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/font.css" />
-  <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/icon.css" />
-  <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
-  <link rel="stylesheet" href="font/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/component.css" />
-  <script src="js/modernizr.custom.js"></script>
-  <script src="js/jquery.min.js"></script>
-  <script type="text/javascript">
-    function hasScrolled() {var l = $(this).scrollTop(); Math.abs(lastScrollTop - l) <= delta || (l > lastScrollTop && l > navbarHeight ? $("header").removeClass("nav-down").addClass("nav-up") : l + $(window).height() < $(document).height() && $("header").removeClass("nav-up").addClass("nav-down"), lastScrollTop = l)} jQuery(window).scroll(function () {0 == jQuery(this).scrollTop() ? $("header").addClass("reachedTop") : $("header").removeClass("reachedTop")}); var didScroll, lastScrollTop = 0, delta = 2, navbarHeight = $("header").outerHeight(); $(window).scroll(function (l) {didScroll = !0}), setInterval(function () {didScroll && (hasScrolled(), didScroll = !1)}, 250);
-  </script>
+</script>
 </head>
-
-<body>
-  <header class="nav-down reachedTop">
-    <div class="wrapper" id="wrapper">
-      <div class="row">
-        <div class="small-12 large-12 columns alignCenter">
-          <ul class="menu">
-            <li><a href="#me">about</a></li>
-            <li><a href="#myskills">skills</a></li>
-            <li><a href="#projects">youtube</a></li>
-            <li><a href="#coffeewithme">coffee with me</a></li>
-        </div>
-      </div>
-    </div>
-  </header>
-  <section class="intro" id="intro">
-    <div class="row" id="middle_row">
-      <div class="medium-12 columns alignCenter">
-        <section class="cd-intro">
-          <h1 class="cd-headline clip is-full-width">
-            <img src="img/plane.gif"><br>
-            <span class="title">Akshay Saini</span><br>
-            <span class="iama">I am </span>
-            <span class="cd-words-wrapper">
-              <b class="is-visible">a web developer.&nbsp;&nbsp;</b>
-              <b>a YouTuber.</b>
-              <b>a digital marketer.</b>
-              <b>an SEO analyst.</b>
-              <b>a proud Indian.</b>
-            </span><br>
-          </h1>
-        </section>
-        <a href="#coffeewithme" class="btn"> Coffee with me</a>
-      </div>
-    </div>
-  </section>
-  <section class="about" id="me">
-    <div class="row">
-      <div class="large-12 medium-12 columns">
-        <div class="large-4 medium-4 columns">
-          <img class="logo" src="img/akshay.jpg">
-          <div class="medium-12 columns">
-            <ul class="tools">
-              <li><a href="https://youtube.com/akshaymarch7" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
-              <li><a href="https://www.facebook.com/akshaymarch7" target="_blank"><i
-                    class="fa fa-facebook-official"></i></a></li>
-              <li><a href="https://in.linkedin.com/in/akshaymarch7" target="_blank"><i
-                    class="fa fa-linkedin-square"></i></a></li>
-              <li><a href="mailto:akshaysaini.in@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="large-8 medium-8 columns">
-          <h1>About me.</h1>
-          <p>
-            Hi I am <a href="https://youtube.com/akshaymarch7" target="_blank">Akshay Saini</a>, a 26 year old Web
-            developer, YouTuber, and a Digital Marketer living in <a href="https://goo.gl/maps/micNErJmWA5UovBG8"
-              target="_blank">Hyderabad, India</a>. I am a Computer Science Engineer, currently working with awesome
-            folks at <a href="http://www.uber.com/" rel="nofollow" target="_blank">Uber</a>.
-          </p>
-          <p>
-            Have a look at my <a href="https://youtube.com/akshaymarch7" target="_blank">YouTube Channel</a>, <a
-              href="#myskills">skills</a> or just connect with me on <a href="https://in.linkedin.com/in/akshaymarch7"
-              target="_blank">LinkedIn</a>. I am always excited to do business with like minded people, lets discuss
-            over <a href="#coffeewithme">coffee</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr class="num">
-  <section class="numbers-wrapper">
-    <section class="numbers-inner-wrapper">
-      <div class="numbers">
-        <h4 id="coded-lines">160 000</h4>
-        <span>lines of code</span>
-      </div>
-      <div class="numbers">
-        <h4 id="rendered-pixels">301 783 509</h4>
-        <span>pixels rendered</span>
-      </div>
-      <div class="numbers">
-        <h4 id="coffee-cups">1512</h4>
-        <span>cups of coffee drunk</span>
-      </div>
-      <div class="numbers">
-        <h4 id="projects-completed">26</h4>
-        <span>projects completed</span>
-      </div>
-    </section>
-  </section>
-  <section class="projects" id="projects">
-    <div class="row alignCenter">
-      <h1>My Youtube Videos</h1>
-      <div id="cbp-fwslider" class="cbp-fwslider">
-        <ul>
-          <li>
-            <iframe width="400" height="225" src="https://www.youtube.com/embed/pN6jk0uUrD8" frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h2 class="name">Namaste JavaScript Web Series</h2>
-            <p class="desc">
-              In depth JavaScript video tutorials!
-            </p>
-            <a class="btn project" href="https://youtube.com/akshaymarch7">Watch Video</a>
-          </li>
-          <li>
-            <iframe width="400" height="225" src="https://www.youtube.com/embed/ozh5WMot6io" frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h2 class="name">How to become a Web Developer</h2>
-            <p class="desc">
-              Covering my personal tips and tricks!
-            </p>
-            <a class="btn project" href="https://youtube.com/akshaymarch7">Watch Video</a>
-          </li>
-          <li>
-            <iframe width="400" height="225" src="https://www.youtube.com/embed/ExPusSE0d30" frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <h2 class="name">My Journey</h2>
-            <p class="desc">
-              How I fell in love with Javascript and ended up being a Web Developer!
-            </p>
-            <a class="btn project" href="https://youtube.com/akshaymarch7">Watch Video</a>
-          </li>
-          <li>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h2 class="name">There are many more !</h2>
-            <p class="desc">
-              Check out all the videos on my Youtube Channel
-            </p>
-            <a class="btn project" href="https://youtube.com/akshaymarch7" target="_blank">Visit now</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section class="myskills" id="myskills">
-    <div class="row alignCenter">
-      <h1>Skills.</h1>
-      <div class="skills">
-      </div>
-      <div class="downloadCV">
-        <p>
-          Download my Resume
-        </p>
-        <img class="resume" onclick="changeImage()" src="img/dwnld.png">
-      </div>
-    </div>
-  </section>
-  <section class="quotes" id="quotes">
-    <div class="row alignCenter">
-      <h1>Inspiring Quotes.</h1>
-      <p>
-      </p>
-      <div id="quote-slider" class="cbp-fwslider">
-        <ul>
-          <li>
-            <img class="quotes_img" src="img/quotes/steve-jobs.jpg" alt="Steve Jobs" />
-            <h2 class="quotelines">" Because the people who are crazy enough to think they can<br>
-              change the world are the ones who do. "</h2>
-            <p class="desc">
-              by <b>Steve Jobs</b>
-            </p>
-          </li>
-          <li>
-            <img class="quotes_img" src="img/quotes/bill-gates.jpg" alt="Bill Gates" />
-            <h2 class="quotelines">" Success is a lousy teacher. It seduces smart people into<br>
-              thinking they can't lose. "</h2>
-            <p class="desc">
-              by <b>Bill Gates</b>
-            </p>
-          </li>
-          <li>
-            <img class="quotes_img" src="img/quotes/linus-torvalds.jpg" alt="Linus Torvalds" />
-            <h2 class="quotelines">" See, you not only have to be a good coder to create system<br>
-              like Linux, you have to be a sneaky bastard too. "</h2>
-            <p class="desc">
-              by <b>Linus Torvalds</b>
-            </p>
-          </li>
-          <li>
-            <img class="quotes_img" src="img/quotes/larry-page.jpg" alt="Larry Page" />
-            <h2 class="quotelines">" If you're changing the world, you're working on important things.<br>
-              You're excited to get up in the morning. "</h2>
-            <p class="desc">
-              by <b>Larry Page</b>
-            </p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section class="coffeewithme" id="coffeewithme">
-    <div class="row alignCenter">
-      <h1>Coffee with me.</h1>
-      <p>
-        I am always excited to work on some awesome projects, message me and let's discuss over coffee.
-      </p>
-      <form id="theForm" class="simform" autocomplete="off">
-        <div class="simform-inner">
-          <ol class="questions">
-            <li>
-              <span><label for="q1">Write a message for me below</label></span>
-              <input id="q1" name="q1" type="text" />
-            </li>
-            <li>
-              <span><label for="q2">Your name</label></span>
-              <input id="q2" name="q2" type="text" />
-            </li>
-            <li>
-              <span><label for="q3">Your email or phone number</label></span>
-              <input id="q3" name="q3" type="text" />
-            </li>
-          </ol>
-          <!-- /questions -->
-          <button class="submit" type="submit">Send answers</button>
-          <div class="controls">
-            <button class="next"><i class="fa fa-arrow-right"></i></button>
-            <div class="progress">
-            </div>
-            <span class="number">
-              <span class="number-current"></span>
-              <span class="number-total"></span>
-            </span>
-            <span class="error-message"></span>
-          </div>
-          <!-- / controls -->
-        </div>
-        <!-- /simform-inner -->
-        <span class="final-message"></span>
-      </form>
-      <!-- /simform -->
-    </div>
-  </section>
-  <section class="sayhello" id="hello">
-    <div class="row">
-      <div class="large-4 columns pad10">
-        <p>
-          <b>No <i class="fa fa-copyright"></i> copyright issues.</b><br>
-          Feel free to copy. If you need any help, ping me !
-        </p>
-      </div>
-      <div class="large-4 columns">
-        <p class="footTitle alignCenter">
-          Akshay Saini
-        </p>
-        <p class="madewithlove">
-          Made with <i class="fa fa-heart"></i> in India
-        </p>
-      </div>
-      <div class="large-4 columns alignCenter pad10">
-        <p class="alignCenter">
-          You can find me everywhere
-        </p>
-        <ul class="tools">
-          <li><a href="https://youtube.com/akshaymarch7" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
-          <li><a href="https://www.facebook.com/akshaysaini.in" target="_blank"><i
-                class="fa fa-facebook-official"></i></a></li>
-          <li><a href="https://in.linkedin.com/in/akshaymarch7" target="_blank"><i
-                class="fa fa-linkedin-square"></i></a></li>
-          <li><a href="mailto:akshaysaini.in@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
-        </ul>
-      </div>
-    </div>
-    <img class="footer-image" src="img/foot.jpg">
-  </section>
-  <script src="js/classie.js"></script>
-  <script src="js/stepsForm.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/jquery.cbpFWSlider.min.js"></script>
-  <script>
-    $(function () {
-      $('#cbp-fwslider').cbpFWSlider();
-      $('#quote-slider').cbpFWSlider();
-      setInterval(function () {
-        if ($('.cbp-fwnext').eq(1).is(":visible")) {
-          $('.cbp-fwnext').eq(1).click();
-        }
-        else {
-          $('.cbp-fwdots').eq(1).find('span').click();
-        }
-      }, 6000);
-    });
-  </script>
-  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $('header a').bind('click', function (event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-          scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-      });
-    });
-    $(function () {
-      $('#intro a').bind('click', function (event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-          scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-      });
-    });
-  </script>
-  <script src="js/foundation.min.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
-  <script src="js/textRotate.js"></script>
-  <script type="text/javascript">
-    var sc_project = 11086857;
-    var sc_invisible = 1;
-    var sc_security = "58e9ef84";
-    var scJsHost = (("https:" == document.location.protocol) ?
-      "https://secure." : "http://www.");
-    document.write("<sc" + "ript type='text/javascript' src='" +
-      scJsHost +
-      "statcounter.com/counter/counter.js'></" + "script>");
-  </script>
-  <noscript>
-    <div class="statcounter"><a title="create counter" href="http://statcounter.com/free-hit-counter/"
-        target="_blank"><img class="statcounter" src="//c.statcounter.com/11086857/0/58e9ef84/1/" alt="create
-counter"></a></div>
-  </noscript>
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-36122972-4', 'auto');
-    ga('send', 'pageview');
-
-  </script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

@@ -1,0 +1,5 @@
+{
+  "name": "Akshay Saini Portfolio - VS Code Edition",
+  "description": "A developer-focused portfolio website mimicking the Visual Studio Code interface. Features a functional file explorer, tabs, syntax-highlighted content, and an interactive terminal.",
+  "requestFramePermissions": []
+}
